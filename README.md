@@ -1,4 +1,5 @@
 # Google Maps Scraper
+Key: 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
 
 ![Google Maps Scraper CSV Result](./img/example_result.png)
 
