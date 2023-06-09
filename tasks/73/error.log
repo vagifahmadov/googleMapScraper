@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 249, in run
+    result = get_data()
+             ^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 237, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 216, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 201, in get_data
+    embed_link = driver.find_element(By.XPATH, "//input[@class='yA7sBe']")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 831, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//input[@class='yA7sBe']"}
+  (Session info: chrome=113.0.5672.126)
+Stacktrace:
+#0 0x55d1d258db73 <unknown>
+#1 0x55d1d22d6416 <unknown>
+#2 0x55d1d2312b4c <unknown>
+#3 0x55d1d2312c81 <unknown>
+#4 0x55d1d234d024 <unknown>
+#5 0x55d1d233265d <unknown>
+#6 0x55d1d234ab3e <unknown>
+#7 0x55d1d2332403 <unknown>
+#8 0x55d1d2306f0a <unknown>
+#9 0x55d1d2307ffe <unknown>
+#10 0x55d1d254ec4e <unknown>
+#11 0x55d1d25528f2 <unknown>
+#12 0x55d1d255b870 <unknown>
+#13 0x55d1d2553933 <unknown>
+#14 0x55d1d252775e <unknown>
+#15 0x55d1d2575e48 <unknown>
+#16 0x55d1d2575fd7 <unknown>
+#17 0x55d1d2585e39 <unknown>
+#18 0x7fa6c6e94b43 <unknown>
+

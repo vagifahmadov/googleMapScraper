@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Venster 33",
+        "rating": 4.4,
+        "number_of_reviews": 1291,
+        "category": "Restoran",
+        "address": "Eerste van der Helststraat 42, 1072 NV Amsterdam, Niderland",
+        "website": "",
+        "phone": "",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipM2JubbwVWY6fefaBMGe6V4thOWXEmy0ZhEmFO5=w224-h298-k-no-pi0-ya260-ro0-fo100;https://lh5.googleusercontent.com/p/AF1QipPCI2raWAxrH7B-eXYqSkhRD3EaS5huXG_Jh28g=w447-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipNaAMYLuRuRAWTonVfm6YxKxVDHDxvcOsyp7RBv=w224-h298-k-no-pi-10-ya180-ro0-fo100",
+        "link": "https://www.google.com/maps/place/Venster+33/data=!4m7!3m6!1s0x47c609ed530d8285:0x75b542e41eae8bd!8m2!3d52.3564875!4d4.8924729!16s%2Fg%2F11b77g7s1x!19sChIJhYINU-0JxkcRvejqQS5UWwc?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Bhatti Pasal - Authentic Nepalese Food",
+        "rating": 4.6,
+        "number_of_reviews": 1702,
+        "category": "Nepal Restoran\u0131",
+        "address": "",
+        "website": "",
+        "phone": "",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipNsUoYQ3tzdXlbPn5TjTzm-weaVk8_SgEcKIUU0=w446-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipNd_bFrnpYBilzfGbNtHvwouOirNG3BfCpQs5dy=w446-h298-k-no;https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=ilsv7E0EUPifY7IDdViuZw&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=2.5946028&pitch=0&thumbfov=100",
+        "link": "https://www.google.com/maps/place/Bhatti+Pasal+-+Authentic+Nepalese+Food/data=!4m7!3m6!1s0x47c60d6d20b8c699:0x52a5078488f2b64d!8m2!3d52.3680424!4d4.8909172!16s%2Fg%2F11g0jcz3xw!19sChIJmca4IG0NxkcRTbbyiIQHpVI?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Restaurant Bougainville",
+        "rating": 4.8,
+        "number_of_reviews": 203,
+        "category": "Restoran",
+        "address": "",
+        "website": "",
+        "phone": "",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipMwkik7Ye7Fk7Z6tqW4qttKDk7DKMpeKj_kylgB=w397-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipOBphjFy8FVOZVoyCVP1w7_DyDD3p6bfxDW-XjC=w447-h298-k-no;https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=7KbOgJA-lLn_QBBwZLBIJA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=137.75757&pitch=0&thumbfov=100",
+        "link": "https://www.google.com/maps/place/Restaurant+Bougainville/data=!4m7!3m6!1s0x47c609c73179c59f:0x9b3e117a5d69561d!8m2!3d52.372456!4d4.893293!16s%2Fg%2F11hd50t76l!19sChIJn8V5MccJxkcRHVZpXXoRPps?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Restaurant Zaza's",
+        "rating": 4.7,
+        "number_of_reviews": 592,
+        "category": "Restoran",
+        "address": "Dani\u00ebl Stalpertstraat 103, 1072 XD Amsterdam, Niderland",
+        "website": "zazas.nl",
+        "phone": "+31 20 673 6333",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipPJ-Hg6hu75reSKFLoWCM8Hs0jkuWAIs5nRnGQr=w446-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipM1tLHucfN3LWCgJ_gkrDr7BQd_EEWo2_2EUxAx=w298-h298-k-no;https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=0d1_EodU4mB3R7zMxV_UHQ&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=334.47424&pitch=0&thumbfov=100",
+        "link": "https://www.google.com/maps/place/Restaurant+Zaza%27s/data=!4m7!3m6!1s0x47c609ed5631f263:0x8a3bd4c1c54f738b!8m2!3d52.35623!4d4.8921973!16s%2Fg%2F1tfd1ls7!19sChIJY_IxVu0JxkcRi3NPxcHUO4o?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Restaurant Olijfje",
+        "rating": 4.6,
+        "number_of_reviews": 2314,
+        "category": "Aral\u0131q D\u0259nizi Restoran\u0131",
+        "address": "Valkenburgerstraat 223D, 1011 MJ Amsterdam, Niderland",
+        "website": "",
+        "phone": "+31 20 330 4444",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipPmBMLt2SEkzjqLe35LZ6blWs2EWIhegz6RRIh3=w447-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipOkKQPAso0wr9po3lN5qpAlAn8fIKDa-gbmB8xM=w447-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipMyOG-9jBbzjWPU3nxNatcRO6kbWTpsR_K2pazU=w224-h298-k-no-pi-0-ya210.5821-ro0-fo100",
+        "link": "https://www.google.com/maps/place/Restaurant+Olijfje/data=!4m7!3m6!1s0x47c609bcfd963d9b:0xb5f45db75cb5a5f5!8m2!3d52.3687767!4d4.9054562!16s%2Fg%2F1tpn1rxg!19sChIJmz2W_bwJxkcR9aW1XLdd9LU?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Bistro Amsterdam",
+        "rating": 4.1,
+        "number_of_reviews": 737,
+        "category": "Bistro",
+        "address": "Prinsengracht 287H, 1016 GW Amsterdam, Niderland",
+        "website": "bistroamsterdam.nl",
+        "phone": "+31 20 627 9016",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipOfUcU229o_Mzn9iQ6NcvO54i5U8FtpU8p87qKe=w397-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipMnQcxWI7xDgTpNyY1L-qgiw0tVT-0LlYVmKLnu=w397-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipOTpZ9rpuYZgLTEVULDNzJGeVM6TWB93TZ-qcZJ=w224-h298-k-no-pi-10-ya2.2292755-ro-0-fo100",
+        "link": "https://www.google.com/maps/place/Bistro+Amsterdam/data=!4m7!3m6!1s0x47c609c4c7fe16d9:0x9f98958dd9c797b8!8m2!3d52.3737925!4d4.8834846!16s%2Fg%2F1tmbv9q_!19sChIJ2Rb-x8QJxkcRuJfH2Y2VmJ8?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Restaurant Jansz",
+        "rating": 4.3,
+        "number_of_reviews": 773,
+        "category": "Restoran",
+        "address": "Reestraat 8, 1016 DN Amsterdam, Niderland",
+        "website": "janszamsterdam.com",
+        "phone": "+31 20 523 5282",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipPPx8w-IO2f5JcBp0FK_Z56NKHWP-rntd8HeINY=w528-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipNTUnd99bvKekRYJgR_vzbeHnYYNbLz5QtPv-aN=w440-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipMcFIPImfc5ZWR_k5Ce_P44Oa2-UDHrr0_VDDj7=w224-h298-k-no-pi0-ya260.71927-ro-0-fo100",
+        "link": "https://www.google.com/maps/place/Restaurant+Jansz/data=!4m7!3m6!1s0x47c609c361ed090d:0x20406a6f0b151ec3!8m2!3d52.3724621!4d4.8842643!16s%2Fg%2F11bywl579c!19sChIJDQntYcMJxkcRwx4VC29qQCA?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Midtown Grill Amsterdam",
+        "rating": 4.4,
+        "number_of_reviews": 720,
+        "category": "Steyk evi",
+        "address": "Stadhouderskade 12, 1054 ES Amsterdam, Niderland",
+        "website": "midtowngrill.nl",
+        "phone": "+31 20 607 5680",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipMZWZfKUwlO24tklEihDxW1HqUsPVpCZ3_biM6i=w708-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipMd2J1nGYyRyyv509nQzKStsUiGdmwItk5Mh5xY=w224-h336-k-no;https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=4yQ_Fwz1zSZeNodWtGJ68w&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=273.05298&pitch=0&thumbfov=100",
+        "link": "https://www.google.com/maps/place/Midtown+Grill+Amsterdam/data=!4m7!3m6!1s0x47c609e8a98a492b:0xad83af9944b4667b!8m2!3d52.3624697!4d4.8802175!16s%2Fg%2F1v3hz5hk!19sChIJK0mKqegJxkcRe2a0RJmvg60?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Senses Restaurant",
+        "rating": 4.7,
+        "number_of_reviews": 557,
+        "category": "Restoran",
+        "address": "Vijzelstraat 45, 1017 HE Amsterdam, Niderland",
+        "website": "sensesrestaurant.nl",
+        "phone": "+31 20 530 6266",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipMPmfiHfzHlDNsDflpZR7wJFVkKZxQ_ZHvUhptI=w447-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipOMtB_mLwwNFMpjWL8KnuXVTHSt7sFQinzMot8v=w447-h298-k-no;https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=gWbWrxDQck08h_uZsUIXSA&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=139.13954&pitch=0&thumbfov=100",
+        "link": "https://www.google.com/maps/place/Senses+Restaurant/data=!4m7!3m6!1s0x47c609eabb837099:0xe42dcf6ca86c7318!8m2!3d52.3659041!4d4.8932993!16s%2Fg%2F11gzbz18f!19sChIJmXCDu-oJxkcRGHNsqGzPLeQ?authuser=0&hl=az&rclk=1"
+    },
+    {
+        "title": "Palmyra Syrian Restaurant",
+        "rating": 4.2,
+        "number_of_reviews": 1027,
+        "category": "Suriya Restoran\u0131",
+        "address": "Nieuwezijds Voorburgwal 53H, 1012 RD Amsterdam, Niderland",
+        "website": "palmyrasyrianrestaurant.com",
+        "phone": "+31 6 55280997",
+        "open_days": "",
+        "img_link": "https://lh5.googleusercontent.com/p/AF1QipPCtRR3gmumiA3USZKe1hKiOU4hQ8jn5FIU3E4r=w298-h298-k-no;https://lh5.googleusercontent.com/p/AF1QipMNkRGovoOYqYVWxHNL4vUkEXz4TQ-DmV1KB37n=w224-h316-k-no;https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=4FYMQkyfkpZj1HTY7jOCcg&cb_client=maps_sv.tactile.gps&w=224&h=298&yaw=120.16411&pitch=0&thumbfov=100",
+        "link": "https://www.google.com/maps/place/Palmyra+Syrian+Restaurant/data=!4m7!3m6!1s0x47c609a14b88c8dd:0x5df22b76f30e679c!8m2!3d52.3759024!4d4.8935039!16s%2Fg%2F11fl9pb4p7!19sChIJ3ciIS6EJxkcRnGcO83Yr8l0?authuser=0&hl=az&rclk=1"
+    }
+]

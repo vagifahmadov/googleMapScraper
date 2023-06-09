@@ -1,0 +1,18 @@
+{
+    "start_time": "16:30:02, 7 June 2023",
+    "end_time": "16:34:22, 7 June 2023",
+    "duration": "4 minutes 19 seconds",
+    "ip_details": {
+        "ip": "31.170.236.103",
+        "city": "Baku",
+        "region": "Baki",
+        "country": "AZ",
+        "loc": "40.3777,49.8920",
+        "org": "AS206977 STATE SERVICE OF SPECIAL COMMUNICATION AND INFORMATION SECURITY OF THE REPUBLIC OF AZERBAIJAN",
+        "postal": "AZ 1124",
+        "timezone": "Asia/Baku"
+    },
+    "last_url": "https://www.google.com/maps/place/Palmyra+Syrian+Restaurant/@52.3759024,4.8935039,17z/data=!3m1!4b1!4m6!3m5!1s0x47c609a14b88c8dd:0x5df22b76f30e679c!8m2!3d52.3759024!4d4.8935039!16s%2Fg%2F11fl9pb4p7?authuser=0&hl=az&entry=ttu",
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.37"
+}

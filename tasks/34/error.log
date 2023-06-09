@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 232, in run
+    result = get_data()
+             ^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 220, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 199, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 140, in get_data
+    driver.get_by_current_page_referrer(link)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/boss_driver.py", line 22, in get_by_current_page_referrer
+    self.execute_script(f"""
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 500, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=113.0.5672.126)
+Stacktrace:
+#0 0x55f886467b73 <unknown>
+#1 0x55f8861b0416 <unknown>
+#2 0x55f88618a5fc <unknown>
+#3 0x55f88621157f <unknown>
+#4 0x55f886224596 <unknown>
+#5 0x55f88620c403 <unknown>
+#6 0x55f8861e0f0a <unknown>
+#7 0x55f8861e1ffe <unknown>
+#8 0x55f886428c4e <unknown>
+#9 0x55f88642c8f2 <unknown>
+#10 0x55f886435870 <unknown>
+#11 0x55f88642d933 <unknown>
+#12 0x55f88640175e <unknown>
+#13 0x55f88644fe48 <unknown>
+#14 0x55f88644ffd7 <unknown>
+#15 0x55f88645fe39 <unknown>
+#16 0x7f6bcbc94b43 <unknown>
+

@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 255, in run
+    result = get_data()
+             ^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 243, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 222, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 199, in get_data
+    opened_days.click()
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 403, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button class="CsEnBe" jsaction="pane.wfvdle5;clickmod:pane.wfvdle5;focus:pane.focusTooltip;blur:pane.blurTooltip" aria-label="Ünvan: Eerste van der Helststraat 42, 1072 NV Amsterdam, Niderland " data-item-id="address" data-tooltip="Ünvanı kopyalayın" jslog="36622; track:click; mutable:true;">...</button> is not clickable at point (276, 593). Other element would receive the click: <div jsaction="modal.backgroundClick" class="hoUMge">...</div>
+  (Session info: chrome=113.0.5672.126)
+Stacktrace:
+#0 0x55f64801eb73 <unknown>
+#1 0x55f647d67416 <unknown>
+#2 0x55f647da9e62 <unknown>
+#3 0x55f647da801c <unknown>
+#4 0x55f647da5e2e <unknown>
+#5 0x55f647da5106 <unknown>
+#6 0x55f647d99e8a <unknown>
+#7 0x55f647dc3632 <unknown>
+#8 0x55f647d997b3 <unknown>
+#9 0x55f647dc37fe <unknown>
+#10 0x55f647ddbb3e <unknown>
+#11 0x55f647dc3403 <unknown>
+#12 0x55f647d97f0a <unknown>
+#13 0x55f647d98ffe <unknown>
+#14 0x55f647fdfc4e <unknown>
+#15 0x55f647fe38f2 <unknown>
+#16 0x55f647fec870 <unknown>
+#17 0x55f647fe4933 <unknown>
+#18 0x55f647fb875e <unknown>
+#19 0x55f648006e48 <unknown>
+#20 0x55f648006fd7 <unknown>
+#21 0x55f648016e39 <unknown>
+#22 0x7f60ca894b43 <unknown>
+

@@ -1,0 +1,67 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 235, in run
+    result = get_data()
+             ^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 214, in get_data
+    links = get_links(q)
+            ^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 120, in get_links
+    scroll_till_end(1)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 100, in scroll_till_end
+    return scroll_till_end(times + 1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 100, in scroll_till_end
+    return scroll_till_end(times + 1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 100, in scroll_till_end
+    return scroll_till_end(times + 1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  [Previous line repeated 27 more times]
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 92, in scroll_till_end
+    visit_gmap()
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 86, in visit_gmap
+    driver.get_by_current_page_referrer(url)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/boss_driver.py", line 22, in get_by_current_page_referrer
+    self.execute_script(f"""
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 500, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: session deleted because of page crash
+from unknown error: cannot determine loading status
+from tab crashed
+  (Session info: chrome=113.0.5672.126)
+Stacktrace:
+#0 0x563456277b73 <unknown>
+#1 0x563455fc02a0 <unknown>
+#2 0x563455fab629 <unknown>
+#3 0x563455faab16 <unknown>
+#4 0x563455fa9bf8 <unknown>
+#5 0x563455fa9a30 <unknown>
+#6 0x563455fa8428 <unknown>
+#7 0x563455fa8bd2 <unknown>
+#8 0x563455fb67af <unknown>
+#9 0x563455fb7852 <unknown>
+#10 0x563455fca2ab <unknown>
+#11 0x563455fceaeb <unknown>
+#12 0x563455fa9173 <unknown>
+#13 0x563455fc9ed0 <unknown>
+#14 0x563456034d53 <unknown>
+#15 0x56345601c403 <unknown>
+#16 0x563455ff0f0a <unknown>
+#17 0x563455ff1ffe <unknown>
+#18 0x563456238c4e <unknown>
+#19 0x56345623c8f2 <unknown>
+#20 0x563456245870 <unknown>
+#21 0x56345623d933 <unknown>
+#22 0x56345621175e <unknown>
+#23 0x56345625fe48 <unknown>
+#24 0x56345625ffd7 <unknown>
+#25 0x56345626fe39 <unknown>
+#26 0x7fa0bd294b43 <unknown>
+

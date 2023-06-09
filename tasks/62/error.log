@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 243, in run
+    result = get_data()
+             ^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 231, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 210, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 197, in get_data
+    share_link = driver.find_element(By.CLASS_NAME, "vrsrZe")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 831, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":".vrsrZe"}
+  (Session info: chrome=113.0.5672.126)
+Stacktrace:
+#0 0x55c2bd48fb73 <unknown>
+#1 0x55c2bd1d8416 <unknown>
+#2 0x55c2bd214b4c <unknown>
+#3 0x55c2bd214c81 <unknown>
+#4 0x55c2bd24f024 <unknown>
+#5 0x55c2bd23465d <unknown>
+#6 0x55c2bd24cb3e <unknown>
+#7 0x55c2bd234403 <unknown>
+#8 0x55c2bd208f0a <unknown>
+#9 0x55c2bd209ffe <unknown>
+#10 0x55c2bd450c4e <unknown>
+#11 0x55c2bd4548f2 <unknown>
+#12 0x55c2bd45d870 <unknown>
+#13 0x55c2bd455933 <unknown>
+#14 0x55c2bd42975e <unknown>
+#15 0x55c2bd477e48 <unknown>
+#16 0x55c2bd477fd7 <unknown>
+#17 0x55c2bd487e39 <unknown>
+#18 0x7f7cb7494b43 <unknown>
+

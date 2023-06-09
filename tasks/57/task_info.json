@@ -1,0 +1,18 @@
+{
+    "start_time": "17:58:03, 7 June 2023",
+    "end_time": "17:58:23, 7 June 2023",
+    "duration": "19 seconds",
+    "ip_details": {
+        "ip": "31.170.236.103",
+        "city": "Baku",
+        "region": "Baki",
+        "country": "AZ",
+        "loc": "40.3777,49.8920",
+        "org": "AS206977 STATE SERVICE OF SPECIAL COMMUNICATION AND INFORMATION SECURITY OF THE REPUBLIC OF AZERBAIJAN",
+        "postal": "AZ 1124",
+        "timezone": "Asia/Baku"
+    },
+    "last_url": "https://www.google.com/maps/dir//Venster+33,+Eerste+van+der+Helststraat+42,+1072+NV+Amsterdam,+Niderland/@52.3564875,4.8924729,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x47c609ed530d8285:0x75b542e41eae8bd!2m2!1d4.8924692!2d52.3564877?authuser=0&hl=az&entry=ttu",
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.37"
+}
