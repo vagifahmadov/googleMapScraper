@@ -83,7 +83,7 @@ class Task(BaseTask):
                 def visit_gmap():
 
                     endpoint = f'maps/search/{urllib.parse.quote_plus(query)}'
-                    url = f'https://www.google.com/{endpoint}'
+                    url = f'https://www.google.com/{endpoint}?hl=en'
 
                     driver.get_by_current_page_referrer(url)
 
@@ -92,6 +92,15 @@ class Task(BaseTask):
                         visit_gmap()
 
                 visit_gmap()
+                # change to eng
+                # time.sleep(2)
+                # menu_button = driver.find_elements(By.CSS_SELECTOR, ".wR3cXd.jHfBQd")
+                # menu_button[0].click()
+                # time.sleep(2)
+                # lan_button = driver.find_elements(By.CSS_SELECTOR, ".aAaxGf.T2ozWe")
+                # lan_button[0].click()
+
+                # main
                 ci = 0  # count scroll
                 while True:
                     el = driver.get_element_or_none_by_selector('[role="feed"]', Wait.LONG)
