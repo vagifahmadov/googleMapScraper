@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 259, in run
+    result = get_data()
+             ^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 247, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 226, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 198, in get_data
+    opened_days[0].click()
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webelement.py", line 403, in _execute
+    return self._parent.execute(command, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=113.0.5672.126)
+Stacktrace:
+#0 0x558cc694ab73 <unknown>
+#1 0x558cc66932a0 <unknown>
+#2 0x558cc66d0f94 <unknown>
+#3 0x558cc66c5e8a <unknown>
+#4 0x558cc66ef632 <unknown>
+#5 0x558cc66c57b3 <unknown>
+#6 0x558cc66ef7fe <unknown>
+#7 0x558cc6707b3e <unknown>
+#8 0x558cc66ef403 <unknown>
+#9 0x558cc66c3f0a <unknown>
+#10 0x558cc66c4ffe <unknown>
+#11 0x558cc690bc4e <unknown>
+#12 0x558cc690f8f2 <unknown>
+#13 0x558cc6918870 <unknown>
+#14 0x558cc6910933 <unknown>
+#15 0x558cc68e475e <unknown>
+#16 0x558cc6932e48 <unknown>
+#17 0x558cc6932fd7 <unknown>
+#18 0x558cc6942e39 <unknown>
+#19 0x7f3eae094b43 <unknown>
+

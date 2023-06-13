@@ -4,7 +4,7 @@ import urllib.parse
 from selenium.webdriver.common.by import By
 from bose import BaseTask, Wait, Output
 import time
-
+import lxml.html as html
 
 def write(result):
     Output.write_finished(result)
@@ -72,11 +72,11 @@ def do_filter(ls, filter_data):
 class Task(BaseTask):
     GET_FIRST_PAGE = False
     queries = [
-        "Amsterdam, restaurant",
     ]
+    global scroll_times
 
     def run(self, driver):
-        def get_links(query):
+        def get_links(query, sc_time):
             def scroll_till_end(times):
                 global has_scrolled
 
@@ -119,7 +119,7 @@ class Task(BaseTask):
                         if self.GET_FIRST_PAGE or ci == times:
                             return
 
-            scroll_till_end(1)
+            scroll_till_end(sc_time)
 
             def extract_links(elements):
                 def extract_link(el):
@@ -191,16 +191,21 @@ class Task(BaseTask):
                 image_gall = driver.find_elements(By.CLASS_NAME, "DaSXdd")
                 merged_img = "" if len(image_gall) == 0 else f"{image_gall[0].get_attribute('src')};{image_gall[-2].get_attribute('src')};{image_gall[-1].get_attribute('src')}"
 
-                sharing = driver.find_elements(By.CSS_SELECTOR, ".g88MCb.S9kvJb")
-                sharing[4].click()
                 # click to view days
-                time.sleep(3)
-                opened_days = driver.find_element(By.XPATH, "//button[@class='CsEnBe']")
-                opened_days.click()
+                # time.sleep(3)
+                # opened_days = driver.find_elements(By.CSS_SELECTOR, ".OqCZI.fontBodyMedium.WVXvdc")
+                # print(opened_days)
+                # opened_days[0].click()
+
                 time.sleep(2)
                 time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium tbody")
-                time_list = time_list.text
-                print('\n\n\ntime list:\t', time_list, '\n\n\n')
+                time_list = time_list.get_attribute('innerHTML')
+                time_text = html.fromstring(time_list)
+                print('\n\n\ntime list:\t', time_text.text_content(), '\n\n\n')
+
+                # click sharing modal
+                sharing = driver.find_elements(By.CSS_SELECTOR, ".g88MCb.S9kvJb")
+                sharing[4].click()
                 time.sleep(4)
                 # share_link = driver.find_element(By.XPATH, "//input[@class='vrsrZe']")
                 map_button = driver.find_element(By.XPATH, "//button[@class='zaxyGe L6Bbsd YTfrze']")
@@ -224,14 +229,14 @@ class Task(BaseTask):
 
         queries = self.queries
 
-        def get_data():
+        def get_data(sc_time):
             result = []
             max_listings = 10000
 
             driver.get_google()
 
             for q in queries:
-                links = get_links(q)
+                links = get_links(q, sc_time)
 
                 print(f'Fetched {len(links)} links.')
 
@@ -252,5 +257,5 @@ class Task(BaseTask):
 
             return result
 
-        result = get_data()
+        result = get_data(self.scroll_times)
         write(result)
