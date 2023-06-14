@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 279, in run
+    result = get_data(self.scroll_times)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 267, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 246, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 217, in get_data
+    time_list = time_list.get_attribute('innerHTML')
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get_attribute'

@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 284, in run
+    result = get_data(self.scroll_times)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 272, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 251, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 235, in get_data
+    map_button = driver.find_element(By.XPATH, "//button[@class='zaxyGe L6Bbsd YTfrze']")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 831, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py", line 440, in execute
+    self.error_handler.check_response(response)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py", line 245, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class='zaxyGe L6Bbsd YTfrze']"}
+  (Session info: chrome=113.0.5672.126)
+Stacktrace:
+#0 0x55a090c15b73 <unknown>
+#1 0x55a09095e416 <unknown>
+#2 0x55a09099ab4c <unknown>
+#3 0x55a09099ac81 <unknown>
+#4 0x55a0909d5024 <unknown>
+#5 0x55a0909ba65d <unknown>
+#6 0x55a0909d2b3e <unknown>
+#7 0x55a0909ba403 <unknown>
+#8 0x55a09098ef0a <unknown>
+#9 0x55a09098fffe <unknown>
+#10 0x55a090bd6c4e <unknown>
+#11 0x55a090bda8f2 <unknown>
+#12 0x55a090be3870 <unknown>
+#13 0x55a090bdb933 <unknown>
+#14 0x55a090baf75e <unknown>
+#15 0x55a090bfde48 <unknown>
+#16 0x55a090bfdfd7 <unknown>
+#17 0x55a090c0de39 <unknown>
+#18 0x7f6801294b43 <unknown>
+

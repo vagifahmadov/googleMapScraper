@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "firmatlas",
+  "private_key_id": "692e589cafbd313ca36918c975d6536b14af19ed",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCrnhnl/QXox/RI\n5GA3FBw/A8fhLbER9bC5RIHg0m/J5pvNrSxuma2rcxLb9iCWQvTXMlLtexxP+Elj\npRNxoWPT8rSiqMXlVQE5ZGJxUpDQ7mloeRwJhDmdfnjZtbceSTZMDeFzaHZqj6LG\nVmOr833g6eLpmsLUpPFVYVf8KxfsFhC2jN+SvGbR75/uWIg1GSpNAel6/iCzxrTz\nL3hJF9I88OOZxucWaph+6W1LtBkw6PP0MedWg9p9J96LtOUFTZY1rabHYYtTSRa3\nIoxnb0KzuRjhNIOZfWdOKiOrq3ofBsOqp/ChDV7eEdHfIbRAbfeVircQemYdXYO0\nAxYi2xB3AgMBAAECggEAFDE6/NuDeXslW/o68+AS3rs0JmN45RMSYwoTef9olcnj\nZRTOGIlObNDSVD0mYmeoZTWPmk+U6jfdcrL2kbUaiNKSvFy9RBl3VmhgSNMdJOgY\nUOmHCfubx9McpwkBbbfRgqtTbn/JBwq1bT625YF1uyPpxfCmodxyZMhaUNpFK0rP\ntjH+dDvQfOgVUHH1dnQ8no78QTEDB4X/bimDwktWvCOLsyt7ceiUYA6SydV8R0WE\ne4YiZBBb4H/jPOHTf+gzB9hWQGkQK1p5jZKIidCwyEWlwP3YAEsbIz0HTwtOSliF\na4PDVrYzkiiXK3o7+ZoLJPGZSwtMVrEWqykQx8w+QQKBgQDqIKiMR1PbuVwiiw+c\nw6SnZM9LmJGAHQ2ZXCGUg9dSJ5nAhlk41KX+qChBcpIGFOH408BbAIo3DfJODMnb\nNpX3b8XMptRBJyU208v18JlxxaMKDItpIj3x7i9vAlaFvMQeqMqXAWx3hWg6fAau\n/2WviYrnSFA3ke4BX8br+WSioQKBgQC7pnfXdBoRwwCkUCcotyaGEVhFXoO6CO2H\n8oUtcjeaGISonO8avUTGLAub+2K+QpQWFU0hoGqVoNEcq8SuL6tWqaQOSqvhWSuU\ndSWU9WqpfY8zj6cLloShr0D4c7pNEh+YBnCpDcQV6bz4BzJHOf5Ufz4ecWUyj+c/\nQhV0zG/0FwKBgAsLx2f25Yn0UNiAXxgyUs5i/zS92f+FX2Lg6eSr47jIjYR70jHQ\nNpSxMlUEJseKrK6kruqcN+kpC0mLaOqixKiL6XUiWdlJE4RmsbTEyTiI7oxG0zz+\nlJWZezttjM96fHZF2GkPdCKfdK9tspMHEbEaeCc5Ti+Q/v2pmyT++zSBAoGBAKEf\nPqdwuTGnDlYHvJfpKtrS6cgmb1S9dbbVNiTffX6CruVYWrXK7dJ63zz/jLlw0VZk\n0+Wbp+jyPJsxoZ8urx+qaYMb+plzx0ehjrNoRj1h4iOTpQr+IsPxhwfN1pl2hkoy\nvWlquINYPzl4dGNUGFzVJLFfDFVt2lEmnOW85CPhAoGAH1l7pcCtUylfruSbR2xQ\n4K828HkDvJKeVFrlG39E0kjEaZLyCJ47TxQnWkaLxvqeh97ux36RpKvFXJKflRqM\nVzS91WO2D1ynaa/KPKzp3sXPGtAVXZ/G1ZkZwkhYqwI+8MaGSDFSUHDYxEUFD2xo\nCldKMOeMBmz9clwApuPtvF4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firestore-sa@firmatlas.iam.gserviceaccount.com",
+  "client_id": "111610587646320599834",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firestore-sa%40firmatlas.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

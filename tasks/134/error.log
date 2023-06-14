@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 288, in run
+    write(result)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 12, in write
+    Output.write_finished(result)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/output.py", line 99, in write_finished
+    return Output.write_json(data, 'finished.json')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/output.py", line 27, in write_json
+    write_json(data, filename)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/utils.py", line 260, in write_json
+    json.dump(data, fp, indent=indent)
+  File "/usr/lib/python3.11/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/usr/lib/python3.11/json/encoder.py", line 430, in _iterencode
+    yield from _iterencode_list(o, _current_indent_level)
+  File "/usr/lib/python3.11/json/encoder.py", line 326, in _iterencode_list
+    yield from chunks
+  File "/usr/lib/python3.11/json/encoder.py", line 406, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.11/json/encoder.py", line 439, in _iterencode
+    o = _default(o)
+        ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type WebElement is not JSON serializable

@@ -6,7 +6,9 @@ from bose import BaseTask, Wait, Output
 import time
 import lxml.html as html
 
+
 def write(result):
+    print(f'type result:\t{type(result)}\t|\t{result}')
     Output.write_finished(result)
     Output.write_csv(result, "finished.csv")
 
@@ -27,13 +29,13 @@ def do_filter(ls, filter_data):
         category = i.get("category")
         web_site = i.get("website")
         phone = i.get("phone")
-        opdays = i.get("open_days")
+        op_days = i.get("open_days")
 
-        if min_rating != None:
+        if min_rating is not None:
             if rating == '' or rating is None or rating < min_rating:
                 return False
 
-        if min_reviews != None:
+        if min_reviews is not None:
             if number_of_reviews == '' or number_of_reviews is None or number_of_reviews < min_reviews:
                 return False
 
@@ -44,18 +46,18 @@ def do_filter(ls, filter_data):
                 return False
 
         if has_website is not None:
-            if has_website == False:
+            if not has_website:
                 if web_site is not None:
                     return False
 
         if has_phone is not None:
-            if has_phone == True:
+            if has_phone:
                 if phone is None or phone == '':
                     return False
 
         if open_days is not None:
             if open_days:
-                if opdays is None or opdays == '':
+                if op_days is None or op_days == '':
                     return False
 
         if is_car:
@@ -201,23 +203,39 @@ class Task(BaseTask):
                 merged_img = "" if len(image_gall) == 0 else f"{image_gall[0].get_attribute('src')};{image_gall[-2].get_attribute('src')};{image_gall[-1].get_attribute('src')}"
 
                 # click to view days
-                # time.sleep(3)
-                # opened_days = driver.find_elements(By.CSS_SELECTOR, ".OqCZI.fontBodyMedium.WVXvdc")
-                # print(opened_days)
-                # opened_days[0].click()
-
                 time.sleep(2)
-                time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium tbody")
-                time_list = time_list.get_attribute('innerHTML')
-                time_text = html.fromstring(time_list)
-                print('\n\n\ntime list:\t', time_text.text_content(), '\n\n\n')
+                time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium")
+                back = False
+                if time_list is None:
+                    # click opened days
+                    back = True
+                    open_time = driver.find_elements(By.XPATH, "//button[@class='CsEnBe']")
+                    lsc = list(map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
+                    print('open time is none->:\t', lsc)
+                    lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute("aria-label") else None, range(0, 4)))
+                    lsc = list(filter(lambda f: f is not None, lsc))
+                    n = lsc[0]
+                    driver.implicitly_wait(10)
+                    ActionChains(driver).move_to_element(open_time[n]).click(open_time[n]).perform()
+                time.sleep(2)
+                time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium")
+                if time_list is not None:
+                    time_list = time_list.get_attribute('innerHTML')
+                    time_text = html.fromstring(time_list)
+                    print('\n\n\ntime list:\t', time_text.text_content(), '\n\n\n')
+
+                if back:
+                    back_btn = driver.find_elements(By.CSS_SELECTOR, '.VfPpkd-icon-LgbsSe.yHy1rc.eT1oJ.mN1ivc')
+                    back_btn[0].click()
 
                 # click sharing modal
                 sharing = driver.find_elements(By.CSS_SELECTOR, ".g88MCb.S9kvJb")
                 sharing[4].click()
                 time.sleep(4)
                 # share_link = driver.find_element(By.XPATH, "//input[@class='vrsrZe']")
-                map_button = driver.find_element(By.XPATH, "//button[@class='zaxyGe L6Bbsd YTfrze']")
+                # //*[contains(text(), 'My Button')]
+                # map_button = driver.find_element(By.XPATH, "//button[@class='zaxyGe L6Bbsd YTfrze']")
+                map_button = driver.find_element(By.XPATH, "//*[contains(text(), 'Embed a map')]")
                 map_button.click()
                 time.sleep(2)
                 embed_link = driver.find_element(By.XPATH, "//input[@class='yA7sBe']")
