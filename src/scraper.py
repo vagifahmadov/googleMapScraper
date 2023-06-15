@@ -78,211 +78,238 @@ class Task(BaseTask):
     global scroll_times
 
     def run(self, driver):
-        def get_links(query, sc_time):
-            def scroll_till_end(times):
-                global has_scrolled
+        c = 0
+        while True:
+            try:
+                def get_links(query, sc_time):
+                    def scroll_till_end(times):
+                        global has_scrolled
 
-                def visit_gmap():
+                        def visit_gmap():
 
-                    endpoint = f'maps/search/{urllib.parse.quote_plus(query)}'
-                    url = f'https://www.google.com/{endpoint}?hl=en'
+                            endpoint = f'maps/search/{urllib.parse.quote_plus(query)}'
+                            url = f'https://www.google.com/{endpoint}?hl=en'
 
-                    driver.get_by_current_page_referrer(url)
+                            driver.get_by_current_page_referrer(url)
 
-                    if not driver.is_in_page(endpoint, Wait.LONG * 3):
-                        print('Revisiting')
+                            if not driver.is_in_page(endpoint, Wait.LONG * 3):
+                                print('Revisiting')
+                                visit_gmap()
+
                         visit_gmap()
+                        # change to eng
+                        # time.sleep(2)
+                        # menu_button = driver.find_elements(By.CSS_SELECTOR, ".wR3cXd.jHfBQd")
+                        # menu_button[0].click()
+                        # time.sleep(2)
+                        # lan_button = driver.find_elements(By.CSS_SELECTOR, ".aAaxGf.T2ozWe")
+                        # lan_button[0].click()
 
-                visit_gmap()
-                # change to eng
-                # time.sleep(2)
-                # menu_button = driver.find_elements(By.CSS_SELECTOR, ".wR3cXd.jHfBQd")
-                # menu_button[0].click()
-                # time.sleep(2)
-                # lan_button = driver.find_elements(By.CSS_SELECTOR, ".aAaxGf.T2ozWe")
-                # lan_button[0].click()
+                        # main
+                        ci = 0  # count scroll
+                        while True:
+                            el = driver.get_element_or_none_by_selector('[role="feed"]', Wait.LONG)
 
-                # main
-                ci = 0  # count scroll
-                while True:
-                    el = driver.get_element_or_none_by_selector('[role="feed"]', Wait.LONG)
+                            if el is None:
+                                visit_gmap()
+                                print('sc-ing')
+                                return scroll_till_end(times + 1)
+                            else:
+                                # for i in range(0, 5):
+                                #     has_scrolled = driver.scroll_element(el)
+                                has_scrolled = driver.scroll_element(el)
 
-                    if el is None:
-                        visit_gmap()
-                        print('sc-ing')
-                        return scroll_till_end(times + 1)
-                    else:
-                        # for i in range(0, 5):
-                        #     has_scrolled = driver.scroll_element(el)
-                        has_scrolled = driver.scroll_element(el)
+                                end_el = driver.get_element_or_none_by_text_contains("You've reached the end of the "
+                                                                                     "list.", Wait.SHORT)
+                                if end_el is not None:
+                                    driver.scroll_element(el)
+                                    return
 
-                        end_el = driver.get_element_or_none_by_text_contains("You've reached the end of the list.", Wait.SHORT)
-                        if end_el is not None:
-                            driver.scroll_element(el)
-                            return
+                                if not has_scrolled:
+                                    driver.sleep(0.1)
+                                    print('not Scrolling...')
+                                else:
+                                    ci += 1
+                                    print(f'Scrolling {ci} times...')
+                                if self.GET_FIRST_PAGE or ci == times:
+                                    return
 
-                        if not has_scrolled:
-                            driver.sleep(0.1)
-                            print('not Scrolling...')
+                    scroll_till_end(sc_time)
+
+                    def extract_links(elements):
+                        def extract_link(el):
+                            return el.get_attribute("href")
+
+                        return list(map(extract_link, elements))
+
+                    els = driver.get_elements_or_none_by_selector('[role="feed"]  [role="article"] > a', Wait.SHORT)
+                    links = extract_links(els)
+
+                    Output.write_pending(links)
+
+                    print('Done Filter')
+
+                    return links
+
+                def get_maps_data(links):
+                    def get_data(link):
+
+                        driver.get_by_current_page_referrer(link)
+
+                        tmp_elem = driver.get_element_or_none("//div[@class='TIHn2']", Wait.SHORT)
+                        out_dict = {}
+                        heading = driver.get_element_or_none_by_selector('h1', Wait.SHORT)
+
+                        if heading is not None:
+                            out_dict['title'] = heading.text
+
                         else:
-                            ci += 1
-                            print(f'Scrolling {ci} times...')
-                        if self.GET_FIRST_PAGE or ci == times:
-                            return
+                            out_dict['title'] = ''
 
-            scroll_till_end(sc_time)
+                        rating = driver.get_element_or_none_by_selector('div.F7nice', Wait.SHORT)
 
-            def extract_links(elements):
-                def extract_link(el):
-                    return el.get_attribute("href")
+                        if rating is not None:
+                            val = rating.text
+                        else:
+                            val = None
 
-                return list(map(extract_link, elements))
+                        if (val is None) or (val == ''):
+                            out_dict['rating'] = None
+                            out_dict['number_of_reviews'] = None
+                        else:
+                            out_dict['rating'] = float(val[:3].replace(',', '.'))
+                            num = ''
+                            for c in val[3:]:
+                                if c.isdigit():
+                                    num = num + c
+                            if len(num) > 0:
+                                out_dict['number_of_reviews'] = int(num)
+                            else:
+                                out_dict['number_of_reviews'] = None
 
-            els = driver.get_elements_or_none_by_selector('[role="feed"]  [role="article"] > a', Wait.SHORT)
-            links = extract_links(els)
+                        category = driver.get_element_or_none_by_selector(
+                            'button[jsaction="pane.rating.category"]')
+                        out_dict['category'] = '' if category is None else category.text
+                        tmp_elem = driver.get_element_or_none("//div[@class='m6QErb']")
 
-            Output.write_pending(links)
+                        def get_el_text(el):
+                            if el is not None:
+                                return el.text
+                            return ''
 
-            print('Done Filter')
+                        out_dict['address'] = get_el_text(driver.get_element_or_none("//button[@data-item-id='address']"))
+                        out_dict['website'] = get_el_text(driver.get_element_or_none("//a[@data-item-id='authority']"))
+                        out_dict['phone'] = get_el_text(driver.get_element_or_none("//button[starts-with(@data-item-id,'phone:tel:')]"))
+                        out_dict['open_days'] = get_el_text(driver.get_element_or_none("//div[@data-item-id='875']"))
 
-            return links
+                        tmp_elem = driver.get_element_or_none_by_selector(".RZ66Rb.FgCUCc img")
+                        image_gall = driver.find_elements(By.CLASS_NAME, "DaSXdd")
+                        merged_img = "" if len(image_gall) == 0 else f"{image_gall[0].get_attribute('src')};{image_gall[-2].get_attribute('src')};{image_gall[-1].get_attribute('src')}"
 
-        def get_maps_data(links):
-            def get_data(link):
+                        # click to view days
+                        time.sleep(2)
+                        time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium")
+                        back = False
+                        if time_list is None:
+                            # click opened days
+                            back = True
+                            open_time = driver.find_elements(By.XPATH, "//button[@class='CsEnBe']")
+                            lsc = list(map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
+                            print('open time is none->:\t', lsc)
+                            lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute("aria-label") else None, range(0, 4)))
+                            lsc = list(filter(lambda f: f is not None, lsc))
+                            n = lsc[0]
+                            driver.implicitly_wait(10)
+                            ActionChains(driver).move_to_element(open_time[n]).click(open_time[n]).perform()
+                        time.sleep(2)
+                        time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium")
+                        if time_list is not None:
+                            time_list = time_list.get_attribute('innerHTML')
+                            time_text = html.fromstring(time_list)
+                            print('\n\n\ntime list:\t', time_text.text_content(), '\n\n\n')
+                        time.sleep(2)
+                        if back:
+                            # back_btn = driver.find_elements(By.CSS_SELECTOR, '.VfPpkd-icon-LgbsSe.yHy1rc.eT1oJ.mN1ivc')
+                            back_btn = driver.find_elements(By.XPATH, '//button[@aria-label="Back"]')
+                            back_btn[0].click()
 
-                driver.get_by_current_page_referrer(link)
+                        # click sharing modal
+                        time.sleep(2)
+                        sharing = driver.find_elements(By.CSS_SELECTOR, ".g88MCb.S9kvJb")
+                        sharing[4].click()
+                        time.sleep(4)
+                        # share_link = driver.find_element(By.XPATH, "//input[@class='vrsrZe']")
+                        # //*[contains(text(), 'My Button')]
+                        # map_button = driver.find_element(By.XPATH, "//button[@class='zaxyGe L6Bbsd YTfrze']")
+                        map_button = driver.find_element(By.XPATH, "//*[contains(text(), 'Embed a map')]")
+                        map_button.click()
+                        time.sleep(2)
+                        embed_link = driver.find_element(By.XPATH, "//input[@class='yA7sBe']")
+                        ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+                        if tmp_elem is not None:
+                            # out_dict['img_link'] = tmp_elem.get_attribute("src")
+                            out_dict['img_link'] = merged_img
 
-                tmp_elem = driver.get_element_or_none("//div[@class='TIHn2']", Wait.SHORT)
-                out_dict = {}
-                heading = driver.get_element_or_none_by_selector('h1', Wait.SHORT)
+                        out_dict['link'] = link
+                        out_dict['embed_frame'] = embed_link
 
-                if heading is not None:
-                    out_dict['title'] = heading.text
+                        # comments
+                        find_commenters = driver.find_elements(By.CLASS_NAME, 'd4r55')
+                        find_comment = driver.find_elements(By.CLASS_NAME, 'wiI7pd')
+                        find_comment_rate = driver.find_elements(By.CLASS_NAME, 'kvMYJc')
+                        commenters = list(map(lambda cm_n:
 
-                else:
-                    out_dict['title'] = ''
+                                              {
+                                                  'user': find_commenters[cm_n].get_attribute('textContent'),
+                                                  'rate': find_comment_rate[cm_n].get_attribute('aria-label'),
+                                                  'comment': find_comment[cm_n].get_attribute('textContent')
+                                              }
+                                              , range(3)))
+                        print(f'commenters:{commenters}')
 
-                rating = driver.get_element_or_none_by_selector('div.F7nice', Wait.SHORT)
+                        print(out_dict)
 
-                if rating is not None:
-                    val = rating.text
-                else:
-                    val = None
+                        return out_dict
 
-                if (val is None) or (val == ''):
-                    out_dict['rating'] = None
-                    out_dict['number_of_reviews'] = None
-                else:
-                    out_dict['rating'] = float(val[:3].replace(',', '.'))
-                    num = ''
-                    for c in val[3:]:
-                        if c.isdigit():
-                            num = num + c
-                    if len(num) > 0:
-                        out_dict['number_of_reviews'] = int(num)
-                    else:
-                        out_dict['number_of_reviews'] = None
+                    ls = list(map(get_data, links))
+                    return ls
 
-                category = driver.get_element_or_none_by_selector(
-                    'button[jsaction="pane.rating.category"]')
-                out_dict['category'] = '' if category is None else category.text
-                tmp_elem = driver.get_element_or_none("//div[@class='m6QErb']")
+                queries = self.queries
 
-                def get_el_text(el):
-                    if el is not None:
-                        return el.text
-                    return ''
+                def get_data(sc_time):
+                    result = []
+                    max_listings = 10000
 
-                out_dict['address'] = get_el_text(driver.get_element_or_none("//button[@data-item-id='address']"))
-                out_dict['website'] = get_el_text(driver.get_element_or_none("//a[@data-item-id='authority']"))
-                out_dict['phone'] = get_el_text(driver.get_element_or_none("//button[starts-with(@data-item-id,'phone:tel:')]"))
-                out_dict['open_days'] = get_el_text(driver.get_element_or_none("//div[@data-item-id='875']"))
+                    driver.get_google()
 
-                tmp_elem = driver.get_element_or_none_by_selector(".RZ66Rb.FgCUCc img")
-                image_gall = driver.find_elements(By.CLASS_NAME, "DaSXdd")
-                merged_img = "" if len(image_gall) == 0 else f"{image_gall[0].get_attribute('src')};{image_gall[-2].get_attribute('src')};{image_gall[-1].get_attribute('src')}"
+                    for q in queries:
+                        links = get_links(q, sc_time)
 
-                # click to view days
-                time.sleep(2)
-                time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium")
-                back = False
-                if time_list is None:
-                    # click opened days
-                    back = True
-                    open_time = driver.find_elements(By.XPATH, "//button[@class='CsEnBe']")
-                    lsc = list(map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
-                    print('open time is none->:\t', lsc)
-                    lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute("aria-label") else None, range(0, 4)))
-                    lsc = list(filter(lambda f: f is not None, lsc))
-                    n = lsc[0]
-                    driver.implicitly_wait(10)
-                    ActionChains(driver).move_to_element(open_time[n]).click(open_time[n]).perform()
-                time.sleep(2)
-                time_list = driver.get_element_or_none_by_selector(".eK4R0e.fontBodyMedium")
-                if time_list is not None:
-                    time_list = time_list.get_attribute('innerHTML')
-                    time_text = html.fromstring(time_list)
-                    print('\n\n\ntime list:\t', time_text.text_content(), '\n\n\n')
+                        print(f'Fetched {len(links)} links.')
 
-                if back:
-                    back_btn = driver.find_elements(By.CSS_SELECTOR, '.VfPpkd-icon-LgbsSe.yHy1rc.eT1oJ.mN1ivc')
-                    back_btn[0].click()
+                        filter_data = {
+                            # "min_reviews": 1,
+                            # "has_phone": True,
+                        }
 
-                # click sharing modal
-                sharing = driver.find_elements(By.CSS_SELECTOR, ".g88MCb.S9kvJb")
-                sharing[4].click()
-                time.sleep(4)
-                # share_link = driver.find_element(By.XPATH, "//input[@class='vrsrZe']")
-                # //*[contains(text(), 'My Button')]
-                # map_button = driver.find_element(By.XPATH, "//button[@class='zaxyGe L6Bbsd YTfrze']")
-                map_button = driver.find_element(By.XPATH, "//*[contains(text(), 'Embed a map')]")
-                map_button.click()
-                time.sleep(2)
-                embed_link = driver.find_element(By.XPATH, "//input[@class='yA7sBe']")
-                ActionChains(driver).send_keys(Keys.ESCAPE).perform()
-                if tmp_elem is not None:
-                    # out_dict['img_link'] = tmp_elem.get_attribute("src")
-                    out_dict['img_link'] = merged_img
+                        a = get_maps_data(links)
+                        new_results = do_filter(a, filter_data)
 
-                out_dict['link'] = link
-                out_dict['embed_frame'] = embed_link
+                        print(f'Filtered {len(new_results)} links from {len(a)}.')
 
-                print(out_dict)
+                        result = result + new_results
+                        # write(result)
+                        if len(result) > max_listings:
+                            return result
 
-                return out_dict
-
-            ls = list(map(get_data, links))
-            return ls
-
-        queries = self.queries
-
-        def get_data(sc_time):
-            result = []
-            max_listings = 10000
-
-            driver.get_google()
-
-            for q in queries:
-                links = get_links(q, sc_time)
-
-                print(f'Fetched {len(links)} links.')
-
-                filter_data = {
-                    # "min_reviews": 1,
-                    # "has_phone": True,
-                }
-
-                a = get_maps_data(links)
-                new_results = do_filter(a, filter_data)
-
-                print(f'Filtered {len(new_results)} links from {len(a)}.')
-
-                result = result + new_results
-                # write(result)
-                if len(result) > max_listings:
                     return result
 
-            return result
-
-        result = get_data(self.scroll_times)
-        write(result)
+                result = get_data(self.scroll_times)
+                write(result)
+                break
+            except:
+                c += 1
+                if c > 3:
+                    break
+                else:
+                    print("Low internet, trying again")

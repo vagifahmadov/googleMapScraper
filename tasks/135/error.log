@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/.venv/lib/python3.10/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/src/scraper.py", line 287, in run
+    result = get_data(self.scroll_times)
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/src/scraper.py", line 275, in get_data
+    a = get_maps_data(links)
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/src/scraper.py", line 254, in get_maps_data
+    ls = list(map(get_data, links))
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/src/scraper.py", line 238, in get_data
+    map_button = driver.find_element(By.XPATH, "//*[contains(text(), 'Embed a map')]")
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/.venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 856, in find_element
+    return self.execute(Command.FIND_ELEMENT, {
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/.venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 429, in execute
+    self.error_handler.check_response(response)
+  File "/home/vagif/Documents/remote/bionluk/googleMapScraper/.venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 243, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[contains(text(), 'Embed a map')]"}
+  (Session info: chrome=114.0.5735.106)
+Stacktrace:
+#0 0x55e01ef6fb73 <unknown>
+#1 0x55e01ecb8416 <unknown>
+#2 0x55e01ecf4b4c <unknown>
+#3 0x55e01ecf4c81 <unknown>
+#4 0x55e01ed2f024 <unknown>
+#5 0x55e01ed1465d <unknown>
+#6 0x55e01ed2cb3e <unknown>
+#7 0x55e01ed14403 <unknown>
+#8 0x55e01ece8f0a <unknown>
+#9 0x55e01ece9ffe <unknown>
+#10 0x55e01ef30c4e <unknown>
+#11 0x55e01ef348f2 <unknown>
+#12 0x55e01ef3d870 <unknown>
+#13 0x55e01ef35933 <unknown>
+#14 0x55e01ef0975e <unknown>
+#15 0x55e01ef57e48 <unknown>
+#16 0x55e01ef57fd7 <unknown>
+#17 0x55e01ef67e39 <unknown>
+#18 0x7f9199094b43 <unknown>
+
