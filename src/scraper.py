@@ -9,8 +9,8 @@ import lxml.html as html
 
 def write(result):
     print(f'type result:\t{type(result)}\t|\t{result}')
-    Output.write_finished(result)
-    Output.write_csv(result, "finished.csv")
+    # Output.write_finished(result)
+    # Output.write_csv(result, "finished.csv")
 
 
 def do_filter(ls, filter_data):
@@ -81,6 +81,19 @@ class Task(BaseTask):
         c = 0
         while True:
             try:
+                def str_week_to_dct(dict_data: dict, week_text):
+                    split_list = ['Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
+                    if week_text is not None:
+                        week_text = week_text.replace('PM', ' PM | ')
+                        week_text = week_text.replace('AM', ' AM | ')
+                        week_text = week_text.replace('Closed', ' Closed | ')
+                        week_text = week_text.replace(' | ', ',')
+                        count_week = list(
+                            map(lambda l: week_text.replace(l, f'{l}:').split(',')[split_list.index(l)], split_list))
+                        list(map(lambda dc: dict_data.update({str(dc).split(':')[0]: str(dc).split(':')[1].decode("utf-8").replace(u"\u2022", "*")}), count_week))
+                    else:
+                        list(map(lambda dc: dict_data.update({dc: ''}), split_list))
+
                 def get_links(query, sc_time):
                     def scroll_till_end(times):
                         global has_scrolled
@@ -226,7 +239,11 @@ class Task(BaseTask):
                         if time_list is not None:
                             time_list = time_list.get_attribute('innerHTML')
                             time_text = html.fromstring(time_list)
-                            print('\n\n\ntime list:\t', time_text.text_content(), '\n\n\n')
+                            str_week_to_dct(dict_data=out_dict, week_text=time_text.text_content())
+                            # print('\n\n\ntime list:\t', time_text.text_content(), '\n\n\n')
+                        else:
+                            str_week_to_dct(dict_data=out_dict, week_text=time_list)
+
                         time.sleep(2)
                         if back:
                             # back_btn = driver.find_elements(By.CSS_SELECTOR, '.VfPpkd-icon-LgbsSe.yHy1rc.eT1oJ.mN1ivc')
@@ -307,9 +324,10 @@ class Task(BaseTask):
                 result = get_data(self.scroll_times)
                 write(result)
                 break
-            except:
+            except Exception.args as e:
                 c += 1
                 if c > 3:
+                    print(f'please fix error {e}')
                     break
                 else:
                     print("Low internet, trying again")
