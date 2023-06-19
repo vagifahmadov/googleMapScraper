@@ -8,7 +8,7 @@ import lxml.html as html
 
 
 def write(result):
-    print(f'type result:\t{type(result)}\t|\t{result}')
+    print(f'result:\n\n\n------------------\n{Colortext.OKBLUE}{result}{Colortext.END}')
     # Output.write_finished(result)
     # Output.write_csv(result, "finished.csv")
 
@@ -21,7 +21,6 @@ def do_filter(ls, filter_data):
         is_car = filter_data.get("is_car", False)
         has_phone = filter_data.get("has_phone")
         has_website = filter_data.get("has_website")
-        open_days = filter_data.get("open_days")
 
         rating = i.get('rating')
         number_of_reviews = i.get('number_of_reviews')
@@ -29,7 +28,6 @@ def do_filter(ls, filter_data):
         category = i.get("category")
         web_site = i.get("website")
         phone = i.get("phone")
-        op_days = i.get("open_days")
 
         if min_rating is not None:
             if rating == '' or rating is None or rating < min_rating:
@@ -55,11 +53,6 @@ def do_filter(ls, filter_data):
                 if phone is None or phone == '':
                     return False
 
-        if open_days is not None:
-            if open_days:
-                if op_days is None or op_days == '':
-                    return False
-
         if is_car:
             if 'car' in category.lower() or 'car' in title.lower():
                 pass
@@ -69,6 +62,21 @@ def do_filter(ls, filter_data):
         return True
 
     return list(filter(fn, ls))
+
+
+class Colortext:
+    # Foreground:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    # Formatting
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    # End colored text
+    END = '\033[0m'
+    NC = '\x1b[0m'  # No Color
 
 
 class Task(BaseTask):
@@ -84,13 +92,20 @@ class Task(BaseTask):
                 def str_week_to_dct(dict_data: dict, week_text):
                     split_list = ['Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']
                     if week_text is not None:
+                        week_text = week_text.replace('PM-', ' P*M-')
                         week_text = week_text.replace('PM', ' PM | ')
+                        week_text = week_text.replace('P*M-', ' PM - ')
+                        week_text = week_text.replace('AM–', ' A*M-')
                         week_text = week_text.replace('AM', ' AM | ')
-                        week_text = week_text.replace('Closed', ' Closed | ')
+                        week_text = week_text.replace('A*M-', ' AM - ')
+                        week_text = week_text.replace('Closed', 'Closed | ')
                         week_text = week_text.replace(' | ', ',')
-                        count_week = list(
-                            map(lambda l: week_text.replace(l, f'{l}:').split(',')[split_list.index(l)], split_list))
-                        list(map(lambda dc: dict_data.update({str(dc).split(':')[0]: str(dc).split(':')[1].decode("utf-8").replace(u"\u2022", "*")}), count_week))
+                        cz = week_text.split(',')
+                        count_week = []
+                        list(map(lambda l: list(map(lambda cw: count_week.append(
+                            str(cw).replace(l, f'{l}:').replace('\u202f', '')) if l in cw else None, cz)), split_list))
+                        list(map(lambda dc: dict_data.update({str(dc).split(':')[0]: str(dc).split(':')[1]}),
+                                 count_week))
                     else:
                         list(map(lambda dc: dict_data.update({dc: ''}), split_list))
 
@@ -210,14 +225,17 @@ class Task(BaseTask):
                                 return el.text
                             return ''
 
-                        out_dict['address'] = get_el_text(driver.get_element_or_none("//button[@data-item-id='address']"))
+                        out_dict['address'] = get_el_text(
+                            driver.get_element_or_none("//button[@data-item-id='address']"))
                         out_dict['website'] = get_el_text(driver.get_element_or_none("//a[@data-item-id='authority']"))
-                        out_dict['phone'] = get_el_text(driver.get_element_or_none("//button[starts-with(@data-item-id,'phone:tel:')]"))
-                        out_dict['open_days'] = get_el_text(driver.get_element_or_none("//div[@data-item-id='875']"))
+                        out_dict['phone'] = get_el_text(
+                            driver.get_element_or_none("//button[starts-with(@data-item-id,'phone:tel:')]"))
+                        # out_dict['open_days'] = get_el_text(driver.get_element_or_none("//div[@data-item-id='875']"))
 
                         tmp_elem = driver.get_element_or_none_by_selector(".RZ66Rb.FgCUCc img")
                         image_gall = driver.find_elements(By.CLASS_NAME, "DaSXdd")
-                        merged_img = "" if len(image_gall) == 0 else f"{image_gall[0].get_attribute('src')};{image_gall[-2].get_attribute('src')};{image_gall[-1].get_attribute('src')}"
+                        merged_img = "" if len(
+                            image_gall) == 0 else f"{image_gall[0].get_attribute('src')};{image_gall[-2].get_attribute('src')};{image_gall[-1].get_attribute('src')}"
 
                         # click to view days
                         time.sleep(2)
@@ -227,9 +245,11 @@ class Task(BaseTask):
                             # click opened days
                             back = True
                             open_time = driver.find_elements(By.XPATH, "//button[@class='CsEnBe']")
-                            lsc = list(map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
+                            lsc = list(
+                                map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
                             print('open time is none->:\t', lsc)
-                            lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute("aria-label") else None, range(0, 4)))
+                            lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute(
+                                "aria-label") else None, range(0, 4)))
                             lsc = list(filter(lambda f: f is not None, lsc))
                             n = lsc[0]
                             driver.implicitly_wait(10)
@@ -274,17 +294,14 @@ class Task(BaseTask):
                         find_commenters = driver.find_elements(By.CLASS_NAME, 'd4r55')
                         find_comment = driver.find_elements(By.CLASS_NAME, 'wiI7pd')
                         find_comment_rate = driver.find_elements(By.CLASS_NAME, 'kvMYJc')
-                        commenters = list(map(lambda cm_n:
-
-                                              {
-                                                  'user': find_commenters[cm_n].get_attribute('textContent'),
-                                                  'rate': find_comment_rate[cm_n].get_attribute('aria-label'),
-                                                  'comment': find_comment[cm_n].get_attribute('textContent')
-                                              }
-                                              , range(3)))
-                        print(f'commenters:{commenters}')
-
-                        print(out_dict)
+                        list(map(lambda cm_n:
+                                 out_dict.update({
+                                     f'Review_Name_{cm_n + 1}': find_commenters[cm_n].get_attribute('textContent'),
+                                     f'Review_Rate_{cm_n + 1}': find_comment_rate[cm_n].get_attribute('aria-label'),
+                                     f'Review_Comment_{cm_n + 1}': find_comment[cm_n].get_attribute('textContent')
+                                 })
+                                 , range(3)))
+                        if out_dict['title'] == 'Dante Kitchen & Bar': print(out_dict)
 
                         return out_dict
 
@@ -324,9 +341,9 @@ class Task(BaseTask):
                 result = get_data(self.scroll_times)
                 write(result)
                 break
-            except Exception.args as e:
+            except ValueError as e:
                 c += 1
-                if c > 3:
+                if c > 0:
                     print(f'please fix error {e}')
                     break
                 else:

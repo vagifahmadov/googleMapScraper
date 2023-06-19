@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 345, in run
+    result = get_data(self.scroll_times)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 333, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 312, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 263, in get_data
+    str_week_to_dct(dict_data=out_dict, week_text=time_text.text_content())
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 114, in str_week_to_dct
+    list(map(lambda dc: dict_data.update({str(dc).split(':')[0]: str(dc).split(':')[1]}), count_week))
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 114, in <lambda>
+    list(map(lambda dc: dict_data.update({str(dc).split(':')[0]: str(dc).split(':')[1]}), count_week))
+                                                                 ~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range

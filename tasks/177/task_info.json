@@ -1,0 +1,18 @@
+{
+    "start_time": "16:20:16, 19 June 2023",
+    "end_time": "16:28:29, 19 June 2023",
+    "duration": "8 minutes 13 seconds",
+    "ip_details": {
+        "ip": "31.170.236.103",
+        "city": "Baku",
+        "region": "Baki",
+        "country": "AZ",
+        "loc": "40.3777,49.8920",
+        "org": "AS206977 STATE SERVICE OF SPECIAL COMMUNICATION AND INFORMATION SECURITY OF THE REPUBLIC OF AZERBAIJAN",
+        "postal": "AZ 1136",
+        "timezone": "Asia/Baku"
+    },
+    "last_url": "https://www.google.com/maps/place/Black+and+Blue/@52.3757472,4.8854076,17z/data=!3m1!4b1!4m6!3m5!1s0x47c609c50ff7dc61:0x5e9b848dbab77159!8m2!3d52.3757472!4d4.8854076!16s%2Fg%2F11bbwk0psn?authuser=0&hl=en&entry=ttu",
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.37"
+}
