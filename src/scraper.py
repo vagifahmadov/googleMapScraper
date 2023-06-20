@@ -1,3 +1,4 @@
+import selenium.common
 from selenium.webdriver import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import urllib.parse
@@ -5,6 +6,7 @@ from selenium.webdriver.common.by import By
 from bose import BaseTask, Wait, Output
 import time
 import lxml.html as html
+import re
 
 
 def write(result):
@@ -14,6 +16,8 @@ def write(result):
 
 
 def do_filter(ls, filter_data):
+    print(f'{Colortext.WARNING}{filter_data}{Colortext.END}\n\n\n\n')
+
     def fn(i):
         min_rating = filter_data.get("min_rating")
         min_reviews = filter_data.get("min_reviews")
@@ -24,7 +28,7 @@ def do_filter(ls, filter_data):
 
         rating = i.get('rating')
         number_of_reviews = i.get('number_of_reviews')
-        title = i.get("title")
+        name = i.get("title")
         category = i.get("category")
         web_site = i.get("website")
         phone = i.get("phone")
@@ -38,7 +42,7 @@ def do_filter(ls, filter_data):
                 return False
 
         if is_kosher:
-            if 'kosher' in category.lower() or 'jew' in category.lower() or 'kosher' in title.lower() or 'jew' in title.lower():
+            if 'kosher' in category.lower() or 'jew' in category.lower() or 'kosher' in name.lower() or 'jew' in name.lower():
                 pass
             else:
                 return False
@@ -54,7 +58,7 @@ def do_filter(ls, filter_data):
                     return False
 
         if is_car:
-            if 'car' in category.lower() or 'car' in title.lower():
+            if 'car' in category.lower() or 'car' in name.lower():
                 pass
             else:
                 return False
@@ -84,6 +88,7 @@ class Task(BaseTask):
     queries = [
     ]
     global scroll_times
+    global filtered_data
 
     def run(self, driver):
         c = 0
@@ -100,6 +105,7 @@ class Task(BaseTask):
                         week_text = week_text.replace('A*M-', ' AM - ')
                         week_text = week_text.replace('Closed', 'Closed | ')
                         week_text = week_text.replace(' | ', ',')
+                        week_text = week_text.replace('  ', ' ')
                         cz = week_text.split(',')
                         count_week = []
                         list(map(lambda l: list(map(lambda cw: count_week.append(
@@ -189,10 +195,10 @@ class Task(BaseTask):
                         heading = driver.get_element_or_none_by_selector('h1', Wait.SHORT)
 
                         if heading is not None:
-                            out_dict['title'] = heading.text
+                            out_dict['Name'] = heading.text
 
                         else:
-                            out_dict['title'] = ''
+                            out_dict['Name'] = ''
 
                         rating = driver.get_element_or_none_by_selector('div.F7nice', Wait.SHORT)
 
@@ -202,22 +208,22 @@ class Task(BaseTask):
                             val = None
 
                         if (val is None) or (val == ''):
-                            out_dict['rating'] = None
-                            out_dict['number_of_reviews'] = None
+                            out_dict['Rate'] = None
+                            out_dict['Reviews_Count'] = None
                         else:
-                            out_dict['rating'] = float(val[:3].replace(',', '.'))
+                            out_dict['Rate'] = float(val[:3].replace(',', '.'))
                             num = ''
                             for c in val[3:]:
                                 if c.isdigit():
                                     num = num + c
                             if len(num) > 0:
-                                out_dict['number_of_reviews'] = int(num)
+                                out_dict['Reviews_Count'] = int(num)
                             else:
-                                out_dict['number_of_reviews'] = None
+                                out_dict['Reviews_Count'] = None
 
                         category = driver.get_element_or_none_by_selector(
                             'button[jsaction="pane.rating.category"]')
-                        out_dict['category'] = '' if category is None else category.text
+                        out_dict['Catagory'] = '' if category is None else category.text
                         tmp_elem = driver.get_element_or_none("//div[@class='m6QErb']")
 
                         def get_el_text(el):
@@ -225,10 +231,10 @@ class Task(BaseTask):
                                 return el.text
                             return ''
 
-                        out_dict['address'] = get_el_text(
+                        out_dict['Address'] = get_el_text(
                             driver.get_element_or_none("//button[@data-item-id='address']"))
-                        out_dict['website'] = get_el_text(driver.get_element_or_none("//a[@data-item-id='authority']"))
-                        out_dict['phone'] = get_el_text(
+                        out_dict['Website'] = get_el_text(driver.get_element_or_none("//a[@data-item-id='authority']"))
+                        out_dict['Telephone'] = get_el_text(
                             driver.get_element_or_none("//button[starts-with(@data-item-id,'phone:tel:')]"))
                         # out_dict['open_days'] = get_el_text(driver.get_element_or_none("//div[@data-item-id='875']"))
 
@@ -245,11 +251,9 @@ class Task(BaseTask):
                             # click opened days
                             back = True
                             open_time = driver.find_elements(By.XPATH, "//button[@class='CsEnBe']")
-                            lsc = list(
-                                map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
-                            print('open time is none->:\t', lsc)
-                            lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute(
-                                "aria-label") else None, range(0, 4)))
+                            lsc = list(map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
+                            # print('open time is none->:\t', lsc)
+                            lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute("aria-label") else None, range(0, 4)))
                             lsc = list(filter(lambda f: f is not None, lsc))
                             n = lsc[0]
                             driver.implicitly_wait(10)
@@ -284,11 +288,11 @@ class Task(BaseTask):
                         embed_link = driver.find_element(By.XPATH, "//input[@class='yA7sBe']")
                         ActionChains(driver).send_keys(Keys.ESCAPE).perform()
                         if tmp_elem is not None:
-                            # out_dict['img_link'] = tmp_elem.get_attribute("src")
-                            out_dict['img_link'] = merged_img
+                            # out_dict['Photos_Place'] = tmp_elem.get_attribute("src")
+                            out_dict['Photos_Place'] = merged_img
 
-                        out_dict['link'] = link
-                        out_dict['embed_frame'] = embed_link
+                        out_dict['Url'] = link
+                        out_dict['Place_link'] = re.search("(?P<url>https?://[^\s]+)", embed_link.get_attribute('value')).group("url")
 
                         # comments
                         find_commenters = driver.find_elements(By.CLASS_NAME, 'd4r55')
@@ -301,7 +305,8 @@ class Task(BaseTask):
                                      f'Review_Comment_{cm_n + 1}': find_comment[cm_n].get_attribute('textContent')
                                  })
                                  , range(3)))
-                        if out_dict['title'] == 'Dante Kitchen & Bar': print(out_dict)
+
+                        print(f"rate:\t{out_dict['Rate']}\n--------------------------\n")
 
                         return out_dict
 
@@ -321,13 +326,13 @@ class Task(BaseTask):
 
                         print(f'Fetched {len(links)} links.')
 
-                        filter_data = {
-                            # "min_reviews": 1,
-                            # "has_phone": True,
-                        }
+                        # filter_data = {
+                        #     # "min_reviews": 1,
+                        #     # "has_phone": True,
+                        # }
 
                         a = get_maps_data(links)
-                        new_results = do_filter(a, filter_data)
+                        new_results = do_filter(a, self.filtered_data)
 
                         print(f'Filtered {len(new_results)} links from {len(a)}.')
 
@@ -341,10 +346,10 @@ class Task(BaseTask):
                 result = get_data(self.scroll_times)
                 write(result)
                 break
-            except ValueError as e:
+            except (selenium.common.NoSuchElementException, IndexError) as e:
                 c += 1
                 if c > 0:
-                    print(f'please fix error {e}')
+                    print(f'{Colortext.WARNING}please fix error {Colortext.BOLD}{e}{Colortext.END}{Colortext.END}')
                     break
                 else:
-                    print("Low internet, trying again")
+                    print(f"{Colortext.WARNING}Low internet, trying again{Colortext.END}")
