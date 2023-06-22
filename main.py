@@ -6,5 +6,5 @@ if __name__ == "__main__":
     t = Task()
     t.queries.append("Amsterdam, restaurant")
     t.scroll_times = 1
-    t.filtered_data = {"min_rating": 3}
+    t.filtered_data = {}
     t.begin_task()

@@ -7,6 +7,17 @@ from bose import BaseTask, Wait, Output
 import time
 import lxml.html as html
 import re
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+from firebase_admin import firestore
+from firebase import firebase
+
+
+cred = credentials.Certificate("./authKey.json")
+default_app = firebase_admin.initialize_app(cred)
+db_fb = firestore.client()
+firebase = firebase.FirebaseApplication('https://vadb-ac5e6-default-rtdb.firebaseio.com/', None)
 
 
 def write(result):
@@ -306,7 +317,7 @@ class Task(BaseTask):
                                  })
                                  , range(3)))
 
-                        print(f"rate:\t{out_dict['Rate']}\n--------------------------\n")
+                        print(f">>:\t{Colortext.BOLD}{out_dict['Name']}{Colortext.END}\n--------------------------\n")
 
                         return out_dict
 
@@ -348,8 +359,8 @@ class Task(BaseTask):
                 break
             except (selenium.common.NoSuchElementException, IndexError) as e:
                 c += 1
-                if c > 0:
-                    print(f'{Colortext.WARNING}please fix error {Colortext.BOLD}{e}{Colortext.END}{Colortext.END}')
+                if c > 1:
+                    print(f'{Colortext.WARNING}Please fix your connection. It has made this error: {Colortext.BOLD}{e}{Colortext.END}{Colortext.END}')
                     break
                 else:
                     print(f"{Colortext.WARNING}Low internet, trying again{Colortext.END}")
