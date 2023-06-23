@@ -27,7 +27,7 @@ def write(result):
 
 
 def do_filter(ls, filter_data):
-    print(f'{Colortext.WARNING}{filter_data}{Colortext.END}\n\n\n\n')
+    # print(f'{Colortext.WARNING}{filter_data}{Colortext.END}\n\n\n\n')
 
     def fn(i):
         min_rating = filter_data.get("min_rating")
@@ -190,7 +190,7 @@ class Task(BaseTask):
                     els = driver.get_elements_or_none_by_selector('[role="feed"]  [role="article"] > a', Wait.SHORT)
                     links = extract_links(els)
 
-                    Output.write_pending(links)
+                    # Output.write_pending(links)
 
                     print('Done Filter')
 
