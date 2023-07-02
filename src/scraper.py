@@ -9,15 +9,10 @@ import lxml.html as html
 import re
 import firebase_admin
 from firebase_admin import credentials
-from firebase_admin import db
-from firebase_admin import firestore
-from firebase import firebase
 
+cred = credentials.Certificate("./auth.json")
+firebase_admin.initialize_app(cred)
 
-cred = credentials.Certificate("./authKey.json")
-default_app = firebase_admin.initialize_app(cred)
-db_fb = firestore.client()
-firebase = firebase.FirebaseApplication('https://vadb-ac5e6-default-rtdb.firebaseio.com/', None)
 
 
 def write(result):
@@ -27,7 +22,7 @@ def write(result):
 
 
 def do_filter(ls, filter_data):
-    # print(f'{Colortext.WARNING}{filter_data}{Colortext.END}\n\n\n\n')
+    print(f'{Colortext.WARNING}{filter_data}{Colortext.END}\n\n\n\n')
 
     def fn(i):
         min_rating = filter_data.get("min_rating")
@@ -98,8 +93,14 @@ class Task(BaseTask):
     GET_FIRST_PAGE = False
     queries = [
     ]
+    global attempt
     global scroll_times
     global filtered_data
+    global result_process
+
+    def __init__(self):
+        super().__init__()
+        self.result_process = {"message": None, "success": False}
 
     def run(self, driver):
         c = 0
@@ -190,7 +191,7 @@ class Task(BaseTask):
                     els = driver.get_elements_or_none_by_selector('[role="feed"]  [role="article"] > a', Wait.SHORT)
                     links = extract_links(els)
 
-                    # Output.write_pending(links)
+                    Output.write_pending(links)
 
                     print('Done Filter')
 
@@ -317,7 +318,7 @@ class Task(BaseTask):
                                  })
                                  , range(3)))
 
-                        print(f">>:\t{Colortext.BOLD}{out_dict['Name']}{Colortext.END}\n--------------------------\n")
+                        print(f"Name:\t{Colortext.BOLD}{out_dict['Name']}{Colortext.END}\n--------------------------\n")
 
                         return out_dict
 
@@ -356,11 +357,16 @@ class Task(BaseTask):
 
                 result = get_data(self.scroll_times)
                 write(result)
+                self.result_process = {'message': result, 'success': True}
                 break
             except (selenium.common.NoSuchElementException, IndexError) as e:
                 c += 1
-                if c > 1:
-                    print(f'{Colortext.WARNING}Please fix your connection. It has made this error: {Colortext.BOLD}{e}{Colortext.END}{Colortext.END}')
+                if c >= self.attempt:
+                    result = f'Fix internet problem: {e}'
+                    self.result_process = {'message': result, 'success': False}
+                    print(f'{Colortext.FAIL}{self.result_process}{Colortext.END}')
                     break
                 else:
-                    print(f"{Colortext.WARNING}Low internet, trying again{Colortext.END}")
+                    result = f"Low internet, trying again"
+                    self.result_process = {'message': result, 'success': False}
+                    print(f'{Colortext.FAIL}{self.result_process}{Colortext.END}')
