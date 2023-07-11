@@ -1,0 +1,18 @@
+{
+    "start_time": "10:35:05, 3 July 2023",
+    "end_time": "10:37:54, 3 July 2023",
+    "duration": "2 minutes 48 seconds",
+    "ip_details": {
+        "ip": "31.170.236.103",
+        "city": "Baku",
+        "region": "Baki",
+        "country": "AZ",
+        "loc": "40.3777,49.8920",
+        "org": "AS206977 STATE SERVICE OF SPECIAL COMMUNICATION AND INFORMATION SECURITY OF THE REPUBLIC OF AZERBAIJAN",
+        "postal": "AZ 1116",
+        "timezone": "Asia/Baku"
+    },
+    "last_url": "https://www.google.com/maps/place/Sushi+Tokyo+Ten+Roppongi/@35.6666095,139.730734,17z/data=!3m1!4b1!4m6!3m5!1s0x60188b78c48b273b:0xcf983426e1e8d25e!8m2!3d35.6666095!4d139.730734!16s%2Fg%2F11jnzbnh2x?authuser=0&hl=en&entry=ttu",
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+}

@@ -1,0 +1,18 @@
+{
+    "start_time": "10:31:00, 3 July 2023",
+    "end_time": "10:31:23, 3 July 2023",
+    "duration": "23 seconds",
+    "ip_details": {
+        "ip": "31.170.236.103",
+        "city": "Baku",
+        "region": "Baki",
+        "country": "AZ",
+        "loc": "40.3777,49.8920",
+        "org": "AS206977 STATE SERVICE OF SPECIAL COMMUNICATION AND INFORMATION SECURITY OF THE REPUBLIC OF AZERBAIJAN",
+        "postal": "AZ 1116",
+        "timezone": "Asia/Baku"
+    },
+    "last_url": "https://www.google.com/maps/search/tokyo+hotels/@35.6921547,139.6157927,11z/data=!3m1!4b1?hl=en&entry=ttu",
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
+}

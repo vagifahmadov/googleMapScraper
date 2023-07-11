@@ -8,11 +8,23 @@ import time
 import lxml.html as html
 import re
 import firebase_admin
-from firebase_admin import credentials
+from firebase import firebase
 
-cred = credentials.Certificate("./auth.json")
-firebase_admin.initialize_app(cred)
+mydb = firebase.FirebaseApplication("https://vadb-ac5e6-default-rtdb.firebaseio.com/", None)
 
+mydb.post("test_data")
+
+# cred = credentials.Certificate("./auth.json")
+# conn = firebase_admin.initialize_app(cred)
+#
+# db = conn.database()
+#
+print(f'connection:\t{mydb.get()}')
+
+data = {
+    'name': 'name',
+    'age': 21
+}
 
 
 def write(result):
@@ -264,9 +276,10 @@ class Task(BaseTask):
                             back = True
                             open_time = driver.find_elements(By.XPATH, "//button[@class='CsEnBe']")
                             lsc = list(map(lambda n_n: {str(n_n): open_time[n_n].get_attribute("aria-label")}, range(0, 4)))
-                            # print('open time is none->:\t', lsc)
+                            print('open time is none->:\t', lsc)
                             lsc = list(map(lambda n_n: n_n if 'See more hours' in open_time[n_n].get_attribute("aria-label") else None, range(0, 4)))
                             lsc = list(filter(lambda f: f is not None, lsc))
+                            print(f'err:\t{Colortext.WARNING}{lsc}{Colortext.END}')
                             n = lsc[0]
                             driver.implicitly_wait(10)
                             ActionChains(driver).move_to_element(open_time[n]).click(open_time[n]).perform()
@@ -362,7 +375,7 @@ class Task(BaseTask):
             except (selenium.common.NoSuchElementException, IndexError) as e:
                 c += 1
                 if c >= self.attempt:
-                    result = f'Fix internet problem: {e}'
+                    result = f'Fix internet problem: {e[:20]}...'
                     self.result_process = {'message': result, 'success': False}
                     print(f'{Colortext.FAIL}{self.result_process}{Colortext.END}')
                     break

@@ -1,0 +1,18 @@
+{
+    "start_time": "15:54:18, 3 July 2023",
+    "end_time": "15:55:01, 3 July 2023",
+    "duration": "43 seconds",
+    "ip_details": {
+        "ip": "31.170.236.103",
+        "city": "Baku",
+        "region": "Baki",
+        "country": "AZ",
+        "loc": "40.3777,49.8920",
+        "org": "AS206977 STATE SERVICE OF SPECIAL COMMUNICATION AND INFORMATION SECURITY OF THE REPUBLIC OF AZERBAIJAN",
+        "postal": "AZ 1116",
+        "timezone": "Asia/Baku"
+    },
+    "last_url": "https://www.google.com/maps/place/InterContinental+Baku,+an+IHG+Hotel/@40.3713836,49.8454399,17z/data=!3m1!4b1!4m9!3m8!1s0x40307d1ab301b8af:0x5b4f3b6eace936f1!5m2!4m1!1i2!8m2!3d40.3713836!4d49.8454399!16s%2Fg%2F11j5z1q1s2?authuser=0&hl=en&entry=ttu",
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.37"
+}

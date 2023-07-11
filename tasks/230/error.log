@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 360, in run
+    # write(result)
+     ^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 348, in get_data
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 327, in get_maps_data
+    , range(3)))
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 315, in get_data
+    out_dict['Place_link'] = re.search("(?P<url>https?://[^\s]+)", embed_link.get_attribute('value')).group("url")
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 319, in <lambda>
+    find_comment = driver.find_elements(By.CLASS_NAME, 'wiI7pd')
+                                               ^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 367, in run
+    write(result)
+                 
+TypeError: 'IndexError' object is not subscriptable
