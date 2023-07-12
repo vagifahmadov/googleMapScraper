@@ -8,23 +8,13 @@ import time
 import lxml.html as html
 import re
 import firebase_admin
-from firebase import firebase
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-mydb = firebase.FirebaseApplication("https://vadb-ac5e6-default-rtdb.firebaseio.com/", None)
+cred = credentials.Certificate("./db.json")
+firebase_admin.initialize_app(cred)
 
-mydb.post("test_data")
-
-# cred = credentials.Certificate("./auth.json")
-# conn = firebase_admin.initialize_app(cred)
-#
-# db = conn.database()
-#
-print(f'connection:\t{mydb.get()}')
-
-data = {
-    'name': 'name',
-    'age': 21
-}
+db = firestore.client()
 
 
 def write(result):
@@ -247,7 +237,7 @@ class Task(BaseTask):
 
                         category = driver.get_element_or_none_by_selector(
                             'button[jsaction="pane.rating.category"]')
-                        out_dict['Catagory'] = '' if category is None else category.text
+                        out_dict['Category'] = '' if category is None else category.text
                         tmp_elem = driver.get_element_or_none("//div[@class='m6QErb']")
 
                         def get_el_text(el):
@@ -331,8 +321,9 @@ class Task(BaseTask):
                                  })
                                  , range(3)))
 
-                        print(f"Name:\t{Colortext.BOLD}{out_dict['Name']}{Colortext.END}\n--------------------------\n")
-
+                        print(f"Name:\t{Colortext.BOLD}{out_dict.keys()}{Colortext.END}\n--------------------------\n")
+                        id_doc = f"{str(out_dict['Name'].replace(' ', '-').lower())}_{str(out_dict['Category'].replace(' ', '-').lower())}"
+                        db.collection("firms").document(id_doc).set(out_dict)
                         return out_dict
 
                     ls = list(map(get_data, links))
@@ -375,7 +366,7 @@ class Task(BaseTask):
             except (selenium.common.NoSuchElementException, IndexError) as e:
                 c += 1
                 if c >= self.attempt:
-                    result = f'Fix internet problem: {e[:20]}...'
+                    result = f'Fix internet problem.'
                     self.result_process = {'message': result, 'success': False}
                     print(f'{Colortext.FAIL}{self.result_process}{Colortext.END}')
                     break

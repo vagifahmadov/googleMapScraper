@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/api_core/grpc_helpers.py", line 72, in error_remapped_callable
+    return callable_(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/grpc/_channel.py", line 1030, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/grpc/_channel.py", line 910, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)  # pytype: disable=not-instantiable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.PERMISSION_DENIED
+	details = "Permission denied on resource project pioneering-flow-332007."
+	debug_error_string = "UNKNOWN:Error received from peer ipv4:142.251.140.74:443 {grpc_message:"Permission denied on resource project pioneering-flow-332007.", grpc_status:7, created_time:"2023-07-12T15:32:18.210945852+04:00"}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 362, in run
+    result = get_data(self.scroll_times)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 350, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 329, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 326, in get_data
+    db.collection("firms").document(id_doc).set(out_dict)
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/cloud/firestore_v1/document.py", line 167, in set
+    write_results = batch.commit(**kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/cloud/firestore_v1/batch.py", line 59, in commit
+    commit_response = self._client._firestore_api.commit(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/cloud/firestore_v1/services/firestore/client.py", line 1125, in commit
+    response = rpc(
+               ^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/api_core/gapic_v1/method.py", line 113, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/api_core/retry.py", line 349, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/api_core/retry.py", line 191, in retry_target
+    return target()
+           ^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/api_core/timeout.py", line 120, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/google/api_core/grpc_helpers.py", line 74, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.PermissionDenied: 403 Permission denied on resource project pioneering-flow-332007. [links {
+  description: "Google developer console API key"
+  url: "https://console.developers.google.com/project/pioneering-flow-332007/apiui/credential"
+}
+, reason: "CONSUMER_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "firestore.googleapis.com"
+}
+metadata {
+  key: "consumer"
+  value: "projects/pioneering-flow-332007"
+}
+]

@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 361, in run
+    result = get_data(self.scroll_times)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 349, in get_data
+    a = get_maps_data(links)
+        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 328, in get_maps_data
+    ls = list(map(get_data, links))
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 316, in get_data
+    list(map(lambda cm_n:
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 320, in <lambda>
+    f'Review_Comment_{cm_n + 1}': find_comment[cm_n].get_attribute('textContent')
+                                  ~~~~~~~~~~~~^^^^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/va/Documents/remote/google-maps-scraper/venv/lib/python3.11/site-packages/bose/base_task.py", line 117, in run_task
+    self.run(driver)
+  File "/home/va/Documents/remote/google-maps-scraper/src/scraper.py", line 368, in run
+    result = f'Fix internet problem: {e[:20]}...'
+                                      ~^^^^^
+TypeError: 'IndexError' object is not subscriptable

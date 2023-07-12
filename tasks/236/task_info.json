@@ -1,0 +1,18 @@
+{
+    "start_time": "16:07:04, 12 July 2023",
+    "end_time": "16:08:55, 12 July 2023",
+    "duration": "1 minute 51 seconds",
+    "ip_details": {
+        "ip": "31.170.236.103",
+        "city": "Baku",
+        "region": "Baki",
+        "country": "AZ",
+        "loc": "40.3777,49.8920",
+        "org": "AS206977 STATE SERVICE OF SPECIAL COMMUNICATION AND INFORMATION SECURITY OF THE REPUBLIC OF AZERBAIJAN",
+        "postal": "AZ 1156",
+        "timezone": "Asia/Baku"
+    },
+    "last_url": "https://www.google.com/maps/place/Baku+cafe+%26+lounge/@40.384724,49.9564239,17z/data=!3m1!4b1!4m6!3m5!1s0x40306341c7800a4d:0xc597781a9cfef50e!8m2!3d40.384724!4d49.9564239!16s%2Fg%2F11gxx7czmm?authuser=0&hl=en&entry=ttu",
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638 Safari/537.36"
+}
