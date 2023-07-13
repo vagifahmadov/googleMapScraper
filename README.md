@@ -30,11 +30,3 @@ Additionaly, you don't have to configure the Selenium driver as it will automati
 - To specify the Google search queries to be used in the scraper, open the `src/scraper.py` file in your preferred text editor and update the `Task.queries` list with your desired queries.
 
 - To specify whether to scrape the first page of Google Maps results or all pages of results, open the `src/scraper.py` file and set the `Task.GET_FIRST_PAGE` variable to `True` or `False` as appropriate.
-
-## Learn More
-
-The Google Maps Scraper is built with Bose Framework, a bot development framework that is Swiss Army Knife for bot developers. To learn Bose Bot Development Framework, read the bose docs at [https://www.omkar.cloud/bose/](https://www.omkar.cloud/bose/)
-
-## If my code helped you in scraping Google Maps, please take a moment to star the repository. Your act of starring will help developers in discovering our Repository and contribute towards helping fellow developers in their scraping needs. Dhanyawad 🙏! Vande Mataram!
-
-### I am an IITian with a perfectionist attitude to work, open to projects. See my projects at [https://dev.to/chetanan/chetan-jains-portfolio-cl6](https://dev.to/chetanan/chetan-jains-portfolio-cl6) 
